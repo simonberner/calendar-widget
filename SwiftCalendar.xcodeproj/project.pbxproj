@@ -48,6 +48,7 @@
 		15DB4CF62948BBC300473358 /* SwiftCalendarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftCalendarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15DB4CFA2948BBC300473358 /* SwiftCalendarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCalendarUITests.swift; sourceTree = "<group>"; };
 		15DB4CFC2948BBC300473358 /* SwiftCalendarUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCalendarUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		15DB4D092948BEB900473358 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +79,7 @@
 		15DB4CCE2948BBC000473358 = {
 			isa = PBXGroup;
 			children = (
+				15DB4D092948BEB900473358 /* README.md */,
 				15DB4CD92948BBC000473358 /* SwiftCalendar */,
 				15DB4CEF2948BBC300473358 /* SwiftCalendarTests */,
 				15DB4CF92948BBC300473358 /* SwiftCalendarUITests */,

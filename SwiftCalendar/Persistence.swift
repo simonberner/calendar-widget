@@ -10,12 +10,14 @@ import CoreData
 struct PersistenceController {
     static let shared = PersistenceController()
 
+    // Dummy data for the preview
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            let newDay = Day(context: viewContext)
+            newDay.date = Date()
+            newDay.didStudy = Bool.random()
         }
         do {
             try viewContext.save()
@@ -32,6 +34,7 @@ struct PersistenceController {
 
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "SwiftCalendar")
+        // Dummy data
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }

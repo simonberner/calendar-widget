@@ -13,7 +13,7 @@ struct SwiftCalendarApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CalendarView()
                 // injection at the root level of the app
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }

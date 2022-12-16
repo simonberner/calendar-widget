@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		15DB4CDB2948BBC000473358 /* SwiftCalendarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB4CDA2948BBC000473358 /* SwiftCalendarApp.swift */; };
-		15DB4CDD2948BBC000473358 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB4CDC2948BBC000473358 /* ContentView.swift */; };
+		15DB4CDD2948BBC000473358 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB4CDC2948BBC000473358 /* CalendarView.swift */; };
 		15DB4CDF2948BBC200473358 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15DB4CDE2948BBC200473358 /* Assets.xcassets */; };
 		15DB4CE22948BBC200473358 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15DB4CE12948BBC200473358 /* Preview Assets.xcassets */; };
 		15DB4CE42948BBC200473358 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB4CE32948BBC200473358 /* Persistence.swift */; };
@@ -38,7 +38,7 @@
 /* Begin PBXFileReference section */
 		15DB4CD72948BBC000473358 /* SwiftCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15DB4CDA2948BBC000473358 /* SwiftCalendarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCalendarApp.swift; sourceTree = "<group>"; };
-		15DB4CDC2948BBC000473358 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		15DB4CDC2948BBC000473358 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		15DB4CDE2948BBC200473358 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		15DB4CE12948BBC200473358 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		15DB4CE32948BBC200473358 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				15DB4CDA2948BBC000473358 /* SwiftCalendarApp.swift */,
-				15DB4CDC2948BBC000473358 /* ContentView.swift */,
+				15DB4CDC2948BBC000473358 /* CalendarView.swift */,
 				15DB4CDE2948BBC200473358 /* Assets.xcassets */,
 				15DB4CE32948BBC200473358 /* Persistence.swift */,
 				15DB4CE52948BBC200473358 /* SwiftCalendar.xcdatamodeld */,
@@ -267,7 +267,7 @@
 			files = (
 				15DB4CE42948BBC200473358 /* Persistence.swift in Sources */,
 				15DB4CE72948BBC200473358 /* SwiftCalendar.xcdatamodeld in Sources */,
-				15DB4CDD2948BBC000473358 /* ContentView.swift in Sources */,
+				15DB4CDD2948BBC000473358 /* CalendarView.swift in Sources */,
 				15DB4CDB2948BBC000473358 /* SwiftCalendarApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

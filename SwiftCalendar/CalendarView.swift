@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 
-struct ContentView: View {
+struct CalendarView: View {
     // viewContext is the key to everything in CoreDate
     @Environment(\.managedObjectContext) private var viewContext
 
@@ -24,7 +24,7 @@ struct ContentView: View {
     private var days: FetchedResults<Day>
 
     let weekDays = ["M", "D", "W", "T", "F", "S", "S"]
-    
+
     var body: some View {
         NavigationView {
             VStack {
@@ -36,7 +36,7 @@ struct ContentView: View {
                             .frame(maxWidth: .infinity)
                             .font(.body)
                     }
-                    
+
                 }
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
                     ForEach(days) { day in
@@ -56,7 +56,7 @@ struct ContentView: View {
 
     struct ContentView_Previews: PreviewProvider {
         static var previews: some View {
-            ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            CalendarView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         }
     }
 }

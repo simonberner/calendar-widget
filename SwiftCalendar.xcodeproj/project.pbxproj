@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15352095294CC5CA00DBED6E /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15352094294CC5CA00DBED6E /* Date+Ext.swift */; };
 		15DB4CDB2948BBC000473358 /* SwiftCalendarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB4CDA2948BBC000473358 /* SwiftCalendarApp.swift */; };
 		15DB4CDD2948BBC000473358 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB4CDC2948BBC000473358 /* CalendarView.swift */; };
 		15DB4CDF2948BBC200473358 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15DB4CDE2948BBC200473358 /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		15352094294CC5CA00DBED6E /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		15DB4CD72948BBC000473358 /* SwiftCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15DB4CDA2948BBC000473358 /* SwiftCalendarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCalendarApp.swift; sourceTree = "<group>"; };
 		15DB4CDC2948BBC000473358 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				15DB4CDC2948BBC000473358 /* CalendarView.swift */,
 				15DB4CDE2948BBC200473358 /* Assets.xcassets */,
 				15DB4CE32948BBC200473358 /* Persistence.swift */,
+				15352094294CC5CA00DBED6E /* Date+Ext.swift */,
 				15DB4CE52948BBC200473358 /* SwiftCalendar.xcdatamodeld */,
 				15DB4CE02948BBC200473358 /* Preview Content */,
 			);
@@ -269,6 +272,7 @@
 				15DB4CE72948BBC200473358 /* SwiftCalendar.xcdatamodeld in Sources */,
 				15DB4CDD2948BBC000473358 /* CalendarView.swift in Sources */,
 				15DB4CDB2948BBC000473358 /* SwiftCalendarApp.swift in Sources */,
+				15352095294CC5CA00DBED6E /* Date+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,9 +14,13 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for _ in 0..<10 {
+//        let startDate = Calendar.current.veryShortWeekdaySymbols
+        // Get the first day of the month
+        let startDate = Calendar.current.dateInterval(of: .month, for: .now)!.start
+        // Create 30 days of the current month
+        for dayOffset in 0..<30 {
             let newDay = Day(context: viewContext)
-            newDay.date = Date()
+            newDay.date = Calendar.current.date(byAdding: .day, value: dayOffset, to: startDate)
             newDay.didStudy = Bool.random()
         }
         do {
@@ -36,6 +40,7 @@ struct PersistenceController {
         container = NSPersistentContainer(name: "SwiftCalendar")
         // Dummy data
         if inMemory {
+            // internal core data store
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in

@@ -33,6 +33,8 @@ extension Date {
         return dayInNextMonth.startOfMonth
     }
 
+
+    /// Total number of days of the month of that date
     var numberOfDaysInMonth: Int {
         // endOfMonth returns the 1st of next month at midnight.
         // An adjustment of -1 is necessary to get last day of current month
@@ -40,14 +42,20 @@ extension Date {
         return Calendar.current.component(.day, from: endDateAdjustment)
     }
 
+
+    /// Int value of the day of that date
     var dayInt: Int {
         Calendar.current.component(.day, from: self)
     }
 
+
+    /// Int value of the month of that date
     var monthInt: Int {
         Calendar.current.component(.month, from: self)
     }
 
+
+    /// Full name of the month of that date
     var monthFullName: String {
         self.formatted(.dateTime.month(.wide))
     }

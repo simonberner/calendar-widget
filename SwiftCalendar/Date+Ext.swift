@@ -23,6 +23,7 @@ extension Date {
         Calendar.current.dateInterval(of: .day, for: self)!.end
     }
 
+    /// Returns today past month (e.g. today 19.12.22 -> returns 19.11.22)
     var startOfPreviousMonth: Date {
         let dayInPreviousMonth = Calendar.current.date(byAdding: .month, value: -1, to: self)!
         return dayInPreviousMonth.startOfMonth
@@ -58,5 +59,20 @@ extension Date {
     /// Full name of the month of that date
     var monthFullName: String {
         self.formatted(.dateTime.month(.wide))
+    }
+
+
+    /// Prefix days to adjust if the startOfMonth day is not on a Sunday
+    /// (How many days do we have to go back in to the past month for starting at a Sunday?)
+    /// (e.g Thursday 1. December22 -> Sunday 27.November22 are 4days)
+    var startDateOfCalendarWithPrefixDays: Date {
+        // What day of the week is it the first of the month?
+        // Sunday == 1, Monday == 2, ... Saturday == 7
+        let startOfMonthWeekday = Calendar.current.component(.weekday, from: startOfMonth)
+        // Because the days are not 0 indexed
+        let numberOfPrefixDays = startOfMonthWeekday - 1
+        // Start day of the past month for the calendar day (which is on a Sunday)
+        let startDateForCalendar = Calendar.current.date(byAdding: .day, value: -numberOfPrefixDays, to: startOfMonth)!
+        return startDateForCalendar
     }
 }

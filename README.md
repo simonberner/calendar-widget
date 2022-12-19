@@ -7,13 +7,13 @@ TBD
         <img src="https://img.shields.io/badge/iOS-16+-blue.svg?style=for-the-badge" />
     </a>
     <a href="https://www.swift.org/">
-        <img src="https://img.shields.io/badge/Swift-5.7.1-brightgreen.svg?style=for-the-badge&logo=swift" />
+        <img src="https://img.shields.io/badge/Swift-5.7.2-brightgreen.svg?style=for-the-badge&logo=swift" />
     </a>
     <a href="https://developer.apple.com/xcode/swiftui">
         <img src="https://img.shields.io/badge/SwiftUI-blue.svg?style=for-the-badge&logo=swift&logoColor=black" />
     </a>
     <a href="https://developer.apple.com/xcode">
-        <img src="https://img.shields.io/badge/Xcode-14.1-blue.svg?style=for-the-badge" />
+        <img src="https://img.shields.io/badge/Xcode-14.2-blue.svg?style=for-the-badge" />
     </a>
     <a href="https://mastodon.green/@simonberner">
         <img src="https://img.shields.io/badge/Contact-@simonberner-orange?style=for-the-badge" alt="mastodon.green/@simonberner" />
@@ -40,6 +40,7 @@ TBD
 * [Learnings](#learnings)
 * [Testing](#testing)
 * [Code Comments](#code-comments)
+* [Pull Requests](#pull-requests)
 * [Credits](#credits)
 
 ---
@@ -48,8 +49,8 @@ TBD
 
 
 ## Tech Stack
-- Xcode 14.1
-- Swift 5.7.1
+- Xcode 14.2
+- Swift 5.7.2
 
 ## Frameworks
 - SwiftUI
@@ -64,12 +65,16 @@ TBD
 TBD
 
 ## Learnings
+- Calendar.Component.weekday -> The weekday units are the numbers 1 through N (where for the Gregorian calendar N=7 and 1 is Sunday).
 
 ## Testing
 I use the [Arrange, Act and Assert Pattern](https://automationpanda.com/2020/07/07/arrange-act-assert-a-pattern-for-writing-good-tests/) for Unit Testing.
 
 ## Code Comments
-I love putting in the effort of adding comments to my code, [here is why](https://www.youtube.com/watch?v=1NEa-OcsTow).
+I like putting in the effort of adding comments to my code, [here is why](https://www.youtube.com/watch?v=1NEa-OcsTow).
+
+## Pull Requests
+When I create PRs I stick to [this guideline](https://www.youtube.com/watch?v=_sfzAOfY8uc).
 
 ## Credits
 🙏🏽 Sean Allen

@@ -13,9 +13,18 @@ struct SwiftCalendarApp: App {
 
     var body: some Scene {
         WindowGroup {
-            CalendarView()
-                // injection at the root level of the app
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            TabView {
+                CalendarView()
+                    .tabItem {
+                        Label("Calendar", systemImage: "calendar")
+                    }
+                StreakView()
+                    .tabItem {
+                        Label("Streak", systemImage: "star")
+                    }
+            }
+            // injection at the root level of the app
+            .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

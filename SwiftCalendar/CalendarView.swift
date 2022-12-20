@@ -55,6 +55,20 @@ struct CalendarView: View {
                                 .foregroundColor(day.didStudy ? .orange : .secondary)
                                 .frame(maxWidth: .infinity, minHeight: 40)
                                 .background(Circle().foregroundColor(.orange.opacity(day.didStudy ? 0.3 : 0.0)))
+                                .onTapGesture {
+                                    if day.date!.dayInt <= Date().dayInt {
+                                        day.didStudy.toggle()
+                                        // Save in the CoreData store
+                                        do {
+                                            try viewContext.save()
+                                            print("✅ \(day.date!.dayInt) now studied!")
+                                        } catch {
+                                            print("❌ saving viewContext failed!")
+                                        }
+                                    } else {
+                                        print("❌ Can't study in the future!")
+                                    }
+                                }
                         }
                     }
                 }

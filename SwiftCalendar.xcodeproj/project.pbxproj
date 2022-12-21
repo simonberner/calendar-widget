@@ -9,6 +9,15 @@
 /* Begin PBXBuildFile section */
 		152B6E592951A5FA00FC0367 /* StreakView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152B6E582951A5FA00FC0367 /* StreakView.swift */; };
 		15352095294CC5CA00DBED6E /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15352094294CC5CA00DBED6E /* Date+Ext.swift */; };
+		15466CF82953082100190437 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15466CF72953082100190437 /* WidgetKit.framework */; };
+		15466CFA2953082100190437 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15466CF92953082100190437 /* SwiftUI.framework */; };
+		15466CFD2953082100190437 /* SwiftCalendarWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15466CFC2953082100190437 /* SwiftCalendarWidgetBundle.swift */; };
+		15466CFF2953082100190437 /* SwiftCalendarWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15466CFE2953082100190437 /* SwiftCalendarWidgetLiveActivity.swift */; };
+		15466D012953082100190437 /* SwiftCalendarWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15466D002953082100190437 /* SwiftCalendarWidget.swift */; };
+		15466D042953082400190437 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15466D032953082400190437 /* Assets.xcassets */; };
+		15466D062953082400190437 /* SwiftCalendarWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 15466D022953082100190437 /* SwiftCalendarWidget.intentdefinition */; };
+		15466D072953082400190437 /* SwiftCalendarWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 15466D022953082100190437 /* SwiftCalendarWidget.intentdefinition */; };
+		15466D0A2953082400190437 /* SwiftCalendarWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 15466CF52953082100190437 /* SwiftCalendarWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		15DB4CDB2948BBC000473358 /* SwiftCalendarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB4CDA2948BBC000473358 /* SwiftCalendarApp.swift */; };
 		15DB4CDD2948BBC000473358 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB4CDC2948BBC000473358 /* CalendarView.swift */; };
 		15DB4CDF2948BBC200473358 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15DB4CDE2948BBC200473358 /* Assets.xcassets */; };
@@ -21,6 +30,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		15466D082953082400190437 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15DB4CCF2948BBC000473358 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15466CF42953082100190437;
+			remoteInfo = SwiftCalendarWidgetExtension;
+		};
 		15DB4CED2948BBC300473358 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 15DB4CCF2948BBC000473358 /* Project object */;
@@ -37,9 +53,32 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		15466D0B2953082400190437 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				15466D0A2953082400190437 /* SwiftCalendarWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		152B6E582951A5FA00FC0367 /* StreakView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakView.swift; sourceTree = "<group>"; };
 		15352094294CC5CA00DBED6E /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
+		15466CF52953082100190437 /* SwiftCalendarWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SwiftCalendarWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		15466CF72953082100190437 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		15466CF92953082100190437 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		15466CFC2953082100190437 /* SwiftCalendarWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCalendarWidgetBundle.swift; sourceTree = "<group>"; };
+		15466CFE2953082100190437 /* SwiftCalendarWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCalendarWidgetLiveActivity.swift; sourceTree = "<group>"; };
+		15466D002953082100190437 /* SwiftCalendarWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCalendarWidget.swift; sourceTree = "<group>"; };
+		15466D022953082100190437 /* SwiftCalendarWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = SwiftCalendarWidget.intentdefinition; sourceTree = "<group>"; };
+		15466D032953082400190437 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		15466D052953082400190437 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15DB4CD72948BBC000473358 /* SwiftCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15DB4CDA2948BBC000473358 /* SwiftCalendarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCalendarApp.swift; sourceTree = "<group>"; };
 		15DB4CDC2948BBC000473358 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -56,6 +95,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		15466CF22953082100190437 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15466CFA2953082100190437 /* SwiftUI.framework in Frameworks */,
+				15466CF82953082100190437 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		15DB4CD42948BBC000473358 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -80,6 +128,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15466CF62953082100190437 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				15466CF72953082100190437 /* WidgetKit.framework */,
+				15466CF92953082100190437 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		15466CFB2953082100190437 /* SwiftCalendarWidget */ = {
+			isa = PBXGroup;
+			children = (
+				15466CFC2953082100190437 /* SwiftCalendarWidgetBundle.swift */,
+				15466CFE2953082100190437 /* SwiftCalendarWidgetLiveActivity.swift */,
+				15466D002953082100190437 /* SwiftCalendarWidget.swift */,
+				15466D022953082100190437 /* SwiftCalendarWidget.intentdefinition */,
+				15466D032953082400190437 /* Assets.xcassets */,
+				15466D052953082400190437 /* Info.plist */,
+			);
+			path = SwiftCalendarWidget;
+			sourceTree = "<group>";
+		};
 		15DB4CCE2948BBC000473358 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +157,8 @@
 				15DB4CD92948BBC000473358 /* SwiftCalendar */,
 				15DB4CEF2948BBC300473358 /* SwiftCalendarTests */,
 				15DB4CF92948BBC300473358 /* SwiftCalendarUITests */,
+				15466CFB2953082100190437 /* SwiftCalendarWidget */,
+				15466CF62953082100190437 /* Frameworks */,
 				15DB4CD82948BBC000473358 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -97,6 +169,7 @@
 				15DB4CD72948BBC000473358 /* SwiftCalendar.app */,
 				15DB4CEC2948BBC300473358 /* SwiftCalendarTests.xctest */,
 				15DB4CF62948BBC300473358 /* SwiftCalendarUITests.xctest */,
+				15466CF52953082100190437 /* SwiftCalendarWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -144,6 +217,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		15466CF42953082100190437 /* SwiftCalendarWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15466D0E2953082400190437 /* Build configuration list for PBXNativeTarget "SwiftCalendarWidgetExtension" */;
+			buildPhases = (
+				15466CF12953082100190437 /* Sources */,
+				15466CF22953082100190437 /* Frameworks */,
+				15466CF32953082100190437 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftCalendarWidgetExtension;
+			productName = SwiftCalendarWidgetExtension;
+			productReference = 15466CF52953082100190437 /* SwiftCalendarWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		15DB4CD62948BBC000473358 /* SwiftCalendar */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 15DB4D002948BBC300473358 /* Build configuration list for PBXNativeTarget "SwiftCalendar" */;
@@ -151,10 +241,12 @@
 				15DB4CD32948BBC000473358 /* Sources */,
 				15DB4CD42948BBC000473358 /* Frameworks */,
 				15DB4CD52948BBC000473358 /* Resources */,
+				15466D0B2953082400190437 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				15466D092953082400190437 /* PBXTargetDependency */,
 			);
 			name = SwiftCalendar;
 			productName = SwiftCalendar;
@@ -204,9 +296,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1410;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1410;
 				TargetAttributes = {
+					15466CF42953082100190437 = {
+						CreatedOnToolsVersion = 14.2;
+					};
 					15DB4CD62948BBC000473358 = {
 						CreatedOnToolsVersion = 14.1;
 					};
@@ -236,11 +331,20 @@
 				15DB4CD62948BBC000473358 /* SwiftCalendar */,
 				15DB4CEB2948BBC300473358 /* SwiftCalendarTests */,
 				15DB4CF52948BBC300473358 /* SwiftCalendarUITests */,
+				15466CF42953082100190437 /* SwiftCalendarWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		15466CF32953082100190437 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15466D042953082400190437 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		15DB4CD52948BBC000473358 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -267,6 +371,17 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		15466CF12953082100190437 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15466D062953082400190437 /* SwiftCalendarWidget.intentdefinition in Sources */,
+				15466D012953082100190437 /* SwiftCalendarWidget.swift in Sources */,
+				15466CFF2953082100190437 /* SwiftCalendarWidgetLiveActivity.swift in Sources */,
+				15466CFD2953082100190437 /* SwiftCalendarWidgetBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		15DB4CD32948BBC000473358 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -276,6 +391,7 @@
 				15DB4CE72948BBC200473358 /* SwiftCalendar.xcdatamodeld in Sources */,
 				15DB4CDD2948BBC000473358 /* CalendarView.swift in Sources */,
 				15DB4CDB2948BBC000473358 /* SwiftCalendarApp.swift in Sources */,
+				15466D072953082400190437 /* SwiftCalendarWidget.intentdefinition in Sources */,
 				15352095294CC5CA00DBED6E /* Date+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,6 +416,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		15466D092953082400190437 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 15466CF42953082100190437 /* SwiftCalendarWidgetExtension */;
+			targetProxy = 15466D082953082400190437 /* PBXContainerItemProxy */;
+		};
 		15DB4CEE2948BBC300473358 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 15DB4CD62948BBC000473358 /* SwiftCalendar */;
@@ -313,6 +434,62 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		15466D0C2953082400190437 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XLY4UW5GHZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SwiftCalendarWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SwiftCalendarWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.simonberner.SwiftCalendar.SwiftCalendarWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		15466D0D2953082400190437 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XLY4UW5GHZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SwiftCalendarWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SwiftCalendarWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.simonberner.SwiftCalendar.SwiftCalendarWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		15DB4CFE2948BBC300473358 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -430,6 +607,7 @@
 		15DB4D012948BBC300473358 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -459,6 +637,7 @@
 		15DB4D022948BBC300473358 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -564,6 +743,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		15466D0E2953082400190437 /* Build configuration list for PBXNativeTarget "SwiftCalendarWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15466D0C2953082400190437 /* Debug */,
+				15466D0D2953082400190437 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		15DB4CD22948BBC000473358 /* Build configuration list for PBXProject "SwiftCalendar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -28,7 +28,7 @@ struct StreakView: View {
                 .bold()
                 .font(.title2)
                 .foregroundColor(.secondary)
-            Text("(A streak is the number of days in a row you have studied. Here the streak only shows a number if you've trained for at least the past day.)")
+            Text("(Rule: A streak is the number of days in a row you have studied. Here the streak only shows a number if you've trained for at least the past day from the current day.)")
                 .font(.italic(.caption)())
                 .foregroundColor(.secondary)
                 .padding()
@@ -47,7 +47,7 @@ struct StreakView: View {
 
         var streakCount = 0
 
-        // Reverse to see from today how long the streak goes
+        // Reverse to get the days from today backwards for the streak
         for day in nonFutureDays.reversed() {
             if day.didStudy {
                 streakCount += 1

@@ -28,7 +28,7 @@ struct StreakView: View {
                 .bold()
                 .font(.title2)
                 .foregroundColor(.secondary)
-            Text("(Rule: A streak is the number of days in a row you have studied. Here the streak only shows a number if you've trained for at least the past day from the current day.)")
+            Text("(Rule: A streak is the number of days in a row you have studied. Here the streak only starts to count, if you've trained for at least the current or past day (from the current day).)")
                 .font(.italic(.caption)())
                 .foregroundColor(.secondary)
                 .padding()
@@ -43,7 +43,7 @@ struct StreakView: View {
         guard !days.isEmpty else { return 0 }
 
         // Only consider already past days of the month from today
-        let nonFutureDays = days.filter { $0.date!.dayInt < Date().dayInt }
+        let nonFutureDays = days.filter { $0.date!.dayInt <= Date().dayInt }
 
         var streakCount = 0
 

@@ -10,6 +10,13 @@ import CoreData
 struct PersistenceController {
     static let shared = PersistenceController()
 
+    /// Shared CoreData container
+    var sharedStoreURL: URL {
+        // Force unwrap the url because no one is probably going to delete the
+        let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dev.simonberner.SwiftCalendar")!
+        return container.appendingPathComponent("SwiftCalendar.sqlite", conformingTo: .database)
+    }
+
     // Dummy data for the preview
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
@@ -38,10 +45,12 @@ struct PersistenceController {
 
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "SwiftCalendar")
-        // Dummy data
         if inMemory {
-            // internal core data store
+            // internal core data store for the previews
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+        } else {
+            // shared (App and Widget) core data container
+            container.persistentStoreDescriptions.first!.url = sharedStoreURL
         }
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {

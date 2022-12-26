@@ -9,12 +9,24 @@ import CoreData
 
 struct PersistenceController {
     static let shared = PersistenceController()
+    let databaseName = "SwiftCalendar.sqlite"
+
+
+    /// Old App CoreData container
+    var oldStoreURL: URL {
+        let directory = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
+        return directory.appendingPathComponent(databaseName, conformingTo: .database)
+    }
+
+//    var oldStoreURL: URL {
+//        .applicationSupportDirectory.appending(component: databaseName)
+//    }
 
     /// Shared CoreData container
     var sharedStoreURL: URL {
-        // Force unwrap the url because no one is probably going to delete the
+        // Force unwrap the url because no one is probably going to delete the AppGroup
         let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dev.simonberner.SwiftCalendar")!
-        return container.appendingPathComponent("SwiftCalendar.sqlite", conformingTo: .database)
+        return container.appendingPathComponent(databaseName, conformingTo: .database)
     }
 
     // Dummy data for the preview
@@ -45,29 +57,55 @@ struct PersistenceController {
 
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "SwiftCalendar")
+
         if inMemory {
             // internal core data store for the previews
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
-        } else {
+            // if the old store doesn't exists, use the shared store
+        } else if !FileManager.default.fileExists(atPath: oldStoreURL.path()) {
+            print("Old store doesn't exists, using shared URL.")
             // shared (App and Widget) core data container
             container.persistentStoreDescriptions.first!.url = sharedStoreURL
         }
+
+        print("Container url: \(container.persistentStoreDescriptions.first!.url!)")
+
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-
-                /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+
+        migrateOldStore(for: container)
         container.viewContext.automaticallyMergesChangesFromParent = true
+    }
+
+    func migrateOldStore(for container: NSPersistentContainer) {
+        // The container has a coordinator attached to it which we are using for the migration
+        let coordinator = container.persistentStoreCoordinator
+
+        // Check if there is a store at this url to migrate (prevents the migration from happening more than once)
+        guard let oldStore = coordinator.persistentStore(for: oldStoreURL) else {
+            print("There is no oldStore to migrate from!")
+            return
+        }
+
+        print("🎬 Start migrating the old store...")
+
+        do {
+            let _ = try coordinator.migratePersistentStore(oldStore, to: sharedStoreURL, type: .sqlite)
+            print("🏁 Migration successful!")
+        } catch {
+            fatalError("Unable to migrate from old to shared store")
+        }
+
+        // Delete the old store
+        do {
+            try FileManager.default.removeItem(at: oldStoreURL)
+            print("🗑️ Old store deleted!")
+        } catch {
+            fatalError("Unable to delete the old store")
+        }
+
     }
 }

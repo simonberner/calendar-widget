@@ -27,21 +27,11 @@ struct CalendarView: View {
                                Date().endOfMonth as CVarArg))
     private var days: FetchedResults<Day>
 
-    let weekDays = ["M", "D", "W", "T", "F", "S", "S"]
-
     var body: some View {
         NavigationView {
             VStack {
-                HStack {
-                    ForEach(weekDays, id: \.self) { day in
-                        Text(day)
-                            .fontWeight(.bold)
-                            .foregroundColor(.green)
-                            .frame(maxWidth: .infinity)
-                            .font(.body)
-                    }
+                CalendarHeaderView()
 
-                }
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
                     ForEach(days) { day in
                         // if it is a prefix day (past month)

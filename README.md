@@ -1,6 +1,7 @@
 # Calendar Widget - Core Data
 
-TBD
+This App shows how one can migrate an existing App using a Core Data App container, to an App with a Widget Extension and a shared Core Data
+container for both parts in place.
 
 <p align="center">
     <a href="https://en.wikipedia.org/wiki/IOS">
@@ -65,7 +66,14 @@ TBD
 TBD
 
 ## Learnings
+### Calendar
 - Calendar.Component.weekday -> The weekday units are the numbers 1 through N (where for the Gregorian calendar N=7 and 1 is Sunday).
+### Core Data
+- [Core Data](https://en.wikipedia.org/wiki/Core_Data) is a persistence framework.
+- [SQLite](https://www.sqlite.org) is the CoreData database engine
+- An AppGroup allows us to share one or more CoreData containers among multiple apps.
+- If you already have an existing App with a CoreData container in place, you have to do a data migration to share that container with
+another App, Widget Extension or App Clip.
 
 ## Testing
 I use the [Arrange, Act and Assert Pattern](https://automationpanda.com/2020/07/07/arrange-act-assert-a-pattern-for-writing-good-tests/) for Unit Testing.

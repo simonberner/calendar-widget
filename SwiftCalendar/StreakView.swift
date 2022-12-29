@@ -39,6 +39,7 @@ struct StreakView: View {
         }
     }
 
+    // TODO: Refactor this out
     private func calculateStreakDays() -> Int {
         guard !days.isEmpty else { return 0 }
 

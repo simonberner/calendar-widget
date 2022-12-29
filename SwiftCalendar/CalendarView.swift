@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import WidgetKit
 
 struct CalendarView: View {
     // viewContext is the key to everything in CoreDate
@@ -36,7 +37,7 @@ struct CalendarView: View {
                     ForEach(days) { day in
                         // if it is a prefix day (past month)
                         if day.date!.monthInt != Date().monthInt {
-                            Text("\(day.date!.formatted(.dateTime.day()))")
+                            Text(day.date!.formatted(.dateTime.day()))
                                 .fontWeight(.light)
                                 .foregroundColor(.secondary)
                         } else {
@@ -51,6 +52,8 @@ struct CalendarView: View {
                                         // Save in the CoreData store
                                         do {
                                             try viewContext.save()
+                                            // Reload Widget to fetch the updated data
+                                            WidgetCenter.shared.reloadTimelines(ofKind: "SwiftCalendarWidget")
                                             print("✅ \(day.date!.dayInt) now studied!")
                                         } catch {
                                             print("❌ saving viewContext failed!")

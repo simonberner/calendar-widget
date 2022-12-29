@@ -18,8 +18,11 @@
 		15466D062953082400190437 /* SwiftCalendarWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 15466D022953082100190437 /* SwiftCalendarWidget.intentdefinition */; };
 		15466D072953082400190437 /* SwiftCalendarWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 15466D022953082100190437 /* SwiftCalendarWidget.intentdefinition */; };
 		15466D0A2953082400190437 /* SwiftCalendarWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 15466CF52953082100190437 /* SwiftCalendarWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		15888878295CB907006012F3 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15352094294CC5CA00DBED6E /* Date+Ext.swift */; };
+		15888879295CBAEE006012F3 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB4CE32948BBC200473358 /* Persistence.swift */; };
 		15D3061F295A12F100C60C24 /* CalendarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D3061E295A12F100C60C24 /* CalendarHeaderView.swift */; };
 		15D30620295A132B00C60C24 /* CalendarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D3061E295A12F100C60C24 /* CalendarHeaderView.swift */; };
+		15D30621295A33F100C60C24 /* SwiftCalendar.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 15DB4CE52948BBC200473358 /* SwiftCalendar.xcdatamodeld */; };
 		15DB4CDB2948BBC000473358 /* SwiftCalendarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB4CDA2948BBC000473358 /* SwiftCalendarApp.swift */; };
 		15DB4CDD2948BBC000473358 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB4CDC2948BBC000473358 /* CalendarView.swift */; };
 		15DB4CDF2948BBC200473358 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15DB4CDE2948BBC200473358 /* Assets.xcassets */; };
@@ -384,9 +387,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				15466D062953082400190437 /* SwiftCalendarWidget.intentdefinition in Sources */,
+				15888879295CBAEE006012F3 /* Persistence.swift in Sources */,
 				15466D012953082100190437 /* SwiftCalendarWidget.swift in Sources */,
 				15466CFF2953082100190437 /* SwiftCalendarWidgetLiveActivity.swift in Sources */,
+				15D30621295A33F100C60C24 /* SwiftCalendar.xcdatamodeld in Sources */,
 				15D30620295A132B00C60C24 /* CalendarHeaderView.swift in Sources */,
+				15888878295CB907006012F3 /* Date+Ext.swift in Sources */,
 				15466CFD2953082100190437 /* SwiftCalendarWidgetBundle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

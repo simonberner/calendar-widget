@@ -47,6 +47,10 @@ container for both parts in place.
 ---
 
 ## Functionality
+### Widget Extension
+- The Widget updates in real time to the changes made in the App.
+- The Widget is also updating at the end of each day.
+
 
 
 ## Tech Stack
@@ -66,6 +70,8 @@ container for both parts in place.
 TBD
 
 ## Learnings
+### Widget
+- In a Widget we should NOT make async network calls (according to Apple), because of that we can't use the property wrapper '@FetchRequest' in a Widget. 
 ### Calendar
 - Calendar.Component.weekday -> The weekday units are the numbers 1 through N (where for the Gregorian calendar N=7 and 1 is Sunday).
 ### Core Data
@@ -74,6 +80,12 @@ TBD
 - An AppGroup allows us to share one or more CoreData containers among multiple apps.
 - If you already have an existing App with a CoreData container in place, you have to do a data migration to share that container with
 another App, Widget Extension or App Clip.
+### SwiftUI Preview
+- The benefit of having previews is to help you building your UI quickly.
+- Don't invest too much time in maintaining your previews.
+- It probably doesn't make sense to fetch some data in the preview code.
+### Other
+- [A Tour through Swift Attributes - Marco Eidinger](https://watch.softinio.com/w/d6jiJFm5hEFrzmKw9kdgXC)
 
 ## Testing
 I use the [Arrange, Act and Assert Pattern](https://automationpanda.com/2020/07/07/arrange-act-assert-a-pattern-for-writing-good-tests/) for Unit Testing.

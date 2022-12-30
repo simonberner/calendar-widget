@@ -69,37 +69,42 @@ struct SwiftCalendarWidgetEntryView : View {
 
     var body: some View {
         HStack {
-            VStack {
-                Text("\(calculateStreakDays())")
-                    .font(.system(size: 70, design: .rounded))
-                    .bold()
-                    .foregroundColor(.orange)
-                Text("day streak")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
+            // Deep linking from the Widget to the StreakView
+            Link(destination: URL(string: "streak")!) {
+                VStack {
+                    Text("\(calculateStreakDays())")
+                        .font(.system(size: 70, design: .rounded))
+                        .bold()
+                        .foregroundColor(.orange)
+                    Text("day streak")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
             }
+            // Deep linking from the Widget to the CalendarView
+            Link(destination: URL(string: "calendar")!) {
+                VStack {
+                    CalendarHeaderView(font: .caption)
 
-            VStack {
-                CalendarHeaderView(font: .caption)
-
-                LazyVGrid(columns: columns, spacing: 6) {
-                    ForEach(entry.days) { day in
-                        // if it is a prefix day (past month)
-                        if day.date!.monthInt != Date().monthInt {
-                            Text(day.date!.formatted(.dateTime.day()))
-                                .fontWeight(.light)
-                                .foregroundColor(.secondary)
-                        } else {
-                            Text(day.date!.formatted(.dateTime.day()))
-                                .font(.caption2)
-                                .bold()
-                                .frame(maxWidth: .infinity)
-                                .foregroundColor(day.didStudy ? .orange : .secondary)
-                                .background(
-                                    Circle()
-                                        .foregroundColor(.orange.opacity(day.didStudy ? 0.3 : 0.0))
-                                        .scaleEffect(1.4)
-                                )
+                    LazyVGrid(columns: columns, spacing: 6) {
+                        ForEach(entry.days) { day in
+                            // if it is a prefix day (past month)
+                            if day.date!.monthInt != Date().monthInt {
+                                Text(day.date!.formatted(.dateTime.day()))
+                                    .fontWeight(.light)
+                                    .foregroundColor(.secondary)
+                            } else {
+                                Text(day.date!.formatted(.dateTime.day()))
+                                    .font(.caption2)
+                                    .bold()
+                                    .frame(maxWidth: .infinity)
+                                    .foregroundColor(day.didStudy ? .orange : .secondary)
+                                    .background(
+                                        Circle()
+                                            .foregroundColor(.orange.opacity(day.didStudy ? 0.3 : 0.0))
+                                            .scaleEffect(1.4)
+                                    )
+                            }
                         }
                     }
                 }

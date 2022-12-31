@@ -1,6 +1,6 @@
 # Calendar Widget - Core Data
 
-This App shows how one can migrate an existing App using a Core Data App container, to an App with a Widget Extension and a shared Core Data
+This App shows how one can migrate an existing App which is using a Core Data App container, to an App with a Widget Extension and a shared Core Data
 container for both parts in place.
 
 <p align="center">
@@ -47,11 +47,12 @@ container for both parts in place.
 ---
 
 ## Functionality
+### App
+- In the calendar view the user can define/select days of study in the current month.
+- The streak view shows the user for how many days they have studied in a row. As streak days count only those days, where the user has studied for at least the current or past day (from the current day) descending.
 ### Widget Extension
-- The Widget updates in real time to the changes made in the App.
-- The Widget is also updating at the end of each day.
-
-
+- The Widget updates in real time to the changes made in the App and automatically at the end of each day.
+- As it is a medium sized Widget, there are two touch targets on it. One that deep links into the StreakView and the other into the CalendarView of the App. 
 
 ## Tech Stack
 - Xcode 14.2
@@ -71,7 +72,10 @@ TBD
 
 ## Learnings
 ### Widget
-- In a Widget we should NOT make async network calls (according to Apple), because of that we can't use the property wrapper '@FetchRequest' in a Widget. 
+- In a Widget we should NOT make async network calls (according to Apple), because of that we can't use the property wrapper '@FetchRequest' in a Widget.
+#### Touch Targets (Deep linking into the App)
+- Deep linking from the Widget into the App can be made by wrapping a view with ```Link()```. This is only available on a medium and a large Widget. We can not have more than one touch targets on a small widget. The only touch target on a small widget is the whole widget.
+- On a small widget, we would use the view modifier ```.widgetURL()```
 ### Calendar
 - Calendar.Component.weekday -> The weekday units are the numbers 1 through N (where for the Gregorian calendar N=7 and 1 is Sunday).
 ### Core Data

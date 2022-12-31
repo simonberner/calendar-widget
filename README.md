@@ -68,7 +68,9 @@ container for both parts in place.
 - iPad >= iOS16+
 
 ## Screenshots
-TBD
+![App](SwiftCalendarApp.png)
+![App](SwiftCalendarAppStreakView.png)
+![App](SwiftCalendarWidget.png)
 
 ## Learnings
 ### Widget

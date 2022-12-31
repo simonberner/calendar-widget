@@ -35,7 +35,7 @@ struct CalendarView: View {
 
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
                     ForEach(days) { day in
-                        // if it is a prefix day (past month)
+                        // if it is a prefix day (from the past month)
                         if day.date!.monthInt != Date().monthInt {
                             Text(day.date!.formatted(.dateTime.day()))
                                 .fontWeight(.light)

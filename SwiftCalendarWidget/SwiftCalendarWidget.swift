@@ -91,6 +91,7 @@ struct SwiftCalendarWidgetEntryView : View {
                             // if it is a prefix day (past month)
                             if day.date!.monthInt != Date().monthInt {
                                 Text(day.date!.formatted(.dateTime.day()))
+                                    .font(.caption2)
                                     .fontWeight(.light)
                                     .foregroundColor(.secondary)
                             } else {

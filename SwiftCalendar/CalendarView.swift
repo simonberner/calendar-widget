@@ -18,12 +18,14 @@ struct CalendarView: View {
      - Fetches all the days in the CoreData store -> PersistenceController
      - Any time the underling items gets changed (every time we tap on a calendar date, we update
      the didStudy to true), it automatically keeps the UI up to date.
-     - Predicate: only give us days in a certain date range (start of the month
-     with prefix days from the past month to the end of the current month)
+     - NSPredicate: only give us days in a certain date range (start of the month
+     with prefix days from the past month to the end of the current month).
+     Objective-C: %@, %@ (first and second argument)
+     (check out: https://nshipster.com/nspredicate/)
      */
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Day.date, ascending: true)],
-        predicate: NSPredicate(format: "(date >= %@) AND (date <= %@)",
+        predicate: NSPredicate(format: "date BETWEEN {%@, %@}",
                                Date().startDateOfCalendarWithPrefixDays as CVarArg,
                                Date().endOfMonth as CVarArg))
     private var days: FetchedResults<Day>

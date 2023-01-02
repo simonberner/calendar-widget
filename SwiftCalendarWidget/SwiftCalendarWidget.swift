@@ -17,7 +17,7 @@ struct Provider: IntentTimelineProvider {
         // Crate a GET request to the shared core data container (very similar to @FetchRequest)
         let request = Day.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(keyPath: \Day.date, ascending: true)]
-        request.predicate = NSPredicate(format: "(date >= %@) AND (date <= %@)",
+        request.predicate = NSPredicate(format: "date BETWEEN {%@, %@}",
                                         Date().startDateOfCalendarWithPrefixDays as CVarArg,
                                         Date().endOfMonth as CVarArg)
         return request

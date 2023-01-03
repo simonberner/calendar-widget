@@ -34,6 +34,7 @@ container for both parts in place.
 
 ## Contents
 * [Functionality](#functionality)
+* [Definitions](#definitions)
 * [Tech Stack](#tech-stack)
 * [Frameworks](#frameworks)
 * [Device Compatibility](#device-compatibility)
@@ -52,7 +53,10 @@ container for both parts in place.
 - The streak view shows the user for how many days they have studied in a row. As streak days count only those days, where the user has studied for at least the current or past day (from the current day) descending.
 ### Widget Extension
 - The Widget updates in real time to the changes made in the App and automatically at the end of each day.
-- As it is a medium sized Widget, there are two touch targets on it. One that deep links into the StreakView and the other into the CalendarView of the App. 
+- As it is a medium sized Widget, there are two touch targets on it. One that deep links into the StreakView and the other into the CalendarView of the App.
+
+## Definitions
+- [First day of the week](https://www.timeanddate.com/calendar/days/first-day-of-the-week.html) is Monday.
 
 ## Tech Stack
 - Xcode 14.2
@@ -79,6 +83,7 @@ container for both parts in place.
 - Deep linking from the Widget into the App can be made by wrapping a view with ```Link()```. This is only available on a medium and a large Widget. We can not have more than one touch targets on a small widget. The only touch target on a small widget is the whole widget.
 - On a small widget, we would use the view modifier ```.widgetURL()```
 ### Calendar
+- [The first day of the week](https://www.timeanddate.com/calendar/days/first-day-of-the-week.html) depends on where you are in the world.
 - Calendar.Component.weekday -> The weekday units are the numbers 1 through N (where for the Gregorian calendar N=7 and 1 is Sunday).
 ### Core Data
 - [Core Data](https://en.wikipedia.org/wiki/Core_Data) is a persistence framework.

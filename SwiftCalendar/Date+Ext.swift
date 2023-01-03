@@ -62,15 +62,15 @@ extension Date {
     }
 
 
-    /// Prefix days to adjust if the startOfMonth day is not on a Monday
+    /// Prefix days from the past month to add if the startOfMonth day is not on a Monday
     /// (How many days do we have to go back into the past month for starting at a Monday?)
-    /// (e.g Thursday 1. December22 -> Monday 28.November22 are 4days)
+    /// (e.g Sunday 1.January 2023 -> Monday 26.December 2022 are 6 days)
     var startDateOfCalendarWithPrefixDays: Date {
-        // What day of the week is it the first of the month?
+        // What day of the week is the first day of the month?
         // Sunday == 1, Monday == 2, ... Saturday == 7
         let startOfMonthWeekday = Calendar.current.component(.weekday, from: startOfMonth)
-        // Because the days are not 0 indexed (Monday is the first day of the week)
-        let numberOfPrefixDays = startOfMonthWeekday - 2
+        // On a Sunday we need 6 prefix days from the past month, on a Monday no prefix days, on a Tuesday 1 and so on
+        let numberOfPrefixDays = startOfMonthWeekday == 1 ? startOfMonthWeekday + 5 : startOfMonthWeekday - 2
         // Start day of the past month for the calendar day (which is on a Monday)
         let startDateForCalendar = Calendar.current.date(byAdding: .day, value: -numberOfPrefixDays, to: startOfMonth)!
         return startDateForCalendar

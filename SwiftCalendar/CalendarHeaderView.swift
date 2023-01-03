@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CalendarHeaderView: View {
-    let weekDays = ["M", "D", "W", "T", "F", "S", "S"]
+    let weekDays = ["M", "T", "W", "T", "F", "S", "S"]
     var font: Font = .body
 
     var body: some View {

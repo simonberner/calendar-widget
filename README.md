@@ -72,9 +72,9 @@ container for both parts in place.
 - iPad >= iOS16+
 
 ## Screenshots
-![App](AppScreenshots/SwiftCalendarApp.png)
-![App](AppScreenshots/SwiftCalendarAppStreakView.png)
-![App](AppScreenshots/SwiftCalendarWidget.png)
+| Calendar View | Streak View | Widget View |
+| :---: | :---: | :---: |
+| <img src="AppScreenshots/SwiftCalendarApp.png" height="100%" width="100%" > | <img src="AppScreenshots/SwiftCalendarAppStreakView.png" height="100%" width="100%" > | <img src="AppScreenshots/SwiftCalendarWidget.png" height="100%" width="100%" > |
 
 ## Learnings
 ### Widget

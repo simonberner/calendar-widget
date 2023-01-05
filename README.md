@@ -68,8 +68,8 @@ container for both parts in place.
 - CoreData
 
 ## Device Compatibility
-- iPhone >= iOS16+
-- iPad >= iOS16+
+- iPhone >= iOS 16.1
+- iPad >= iOS 16.1
 
 ## Screenshots
 | Calendar View | Streak View | Widget View |

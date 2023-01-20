@@ -74,7 +74,7 @@ struct SwiftCalendarWidgetEntryView : View {
             case .accessoryCircular:
                 LockScreenCircularView(entry: entry)
             case .accessoryRectangular:
-                Text("Test")
+                LockScreenRectangularView(entry: entry)
             case .accessoryInline:
                 Label("Streak - \(calculateStreakDays())", systemImage: "swift")
             case .systemSmall, .systemLarge, .systemExtraLarge: // don't supported here
@@ -189,7 +189,9 @@ private struct MediumCalendarView: View {
     }
 }
 
+// Circular Lock Screen Widget View
 // Shows the total study days of the current month
+@available(iOS 16.1, *) // only available for iOS 16.1+
 private struct LockScreenCircularView: View {
     var entry: CalendarEntry
     var currentCalendarDays: Int {
@@ -213,5 +215,38 @@ private struct LockScreenCircularView: View {
         }
         .gaugeStyle(.accessoryCircular)
 
+    }
+}
+
+// Rectangular Lock Screen Widget View
+private struct LockScreenRectangularView: View {
+    var entry: CalendarEntry
+    let columns = Array(repeating: GridItem(.flexible()), count: 7)
+
+    var body: some View {
+        LazyVGrid(columns: columns, spacing: 4) {
+            ForEach(entry.days) { day in
+                // if it is a prefix day (past month)
+                if day.date!.monthInt != Date().monthInt {
+//                    Text(" ")
+                    Text(day.date!.formatted(.dateTime.day()))
+                        .font(.system(size: 6))
+                        .fontWeight(.light)
+                        .foregroundColor(.secondary)
+                } else {
+                    if day.didStudy {
+                        Image(systemName: "swift")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 6, height: 6)
+                    } else {
+                        Text(day.date!.formatted(.dateTime.day()))
+                            .font(.system(size: 6))
+                            .frame(maxWidth: .infinity)
+                    }
+                }
+            }
+        }
+        .padding()
     }
 }

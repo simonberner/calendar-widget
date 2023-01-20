@@ -1,11 +1,8 @@
-# Calendar Widget - Core Data
-
-This App shows how one can migrate an existing App which is using a Core Data App container, to an App with a Widget Extension and a shared Core Data
-container for both parts in place.
+<h1 align=center>Calendar Widget - Core Data</h1>
 
 <p align="center">
     <a href="https://en.wikipedia.org/wiki/IOS">
-        <img src="https://img.shields.io/badge/iOS-16+-blue.svg?style=for-the-badge" />
+        <img src="https://img.shields.io/badge/iOS-16.1+-blue.svg?style=for-the-badge" />
     </a>
     <a href="https://www.swift.org/">
         <img src="https://img.shields.io/badge/Swift-5.7.2-brightgreen.svg?style=for-the-badge&logo=swift" />
@@ -29,6 +26,9 @@ container for both parts in place.
         <img src="https://img.shields.io/badge/license-MIT-black.svg?style=for-the-badge" />
     </a>
 </p>
+
+This App shows how one can migrate an existing App which is using a Core Data App container, to an App with a Widget Extension and a shared Core Data
+container for both parts in place.
 
 ---
 
@@ -68,13 +68,18 @@ container for both parts in place.
 - CoreData
 
 ## Device Compatibility
-- iPhone >= iOS 16.1
-- iPad >= iOS 16.1
+- iPhone iOS 16.1+
+- iPad iOS 16.1+
 
 ## Screenshots
 | Calendar View | Streak View | Widget View |
 | :---: | :---: | :---: |
 | <img src="AppScreenshots/SwiftCalendarApp.png" height="100%" width="100%" > | <img src="AppScreenshots/SwiftCalendarAppStreakView.png" height="100%" width="100%" > | <img src="AppScreenshots/SwiftCalendarWidget.png" height="100%" width="100%" > |
+
+| Lock Screen Widgets |
+| :---: |
+| <img src="AppScreenshots/Lock-Screen-Widgets.gif" height="80%" width="80%" > |
+
 
 ## Learnings
 ### Widget
@@ -82,6 +87,7 @@ container for both parts in place.
 #### Touch Targets (Deep linking into the App)
 - Deep linking from the Widget into the App can be made by wrapping a view with ```Link()```. This is only available on a medium and a large Widget. We can not have more than one touch targets on a small widget. The only touch target on a small widget is the whole widget.
 - On a small widget, we would use the view modifier ```.widgetURL()```
+- SwiftCalendarApp: here we have to tag the views for deep-linking
 ### Calendar
 - [The first day of the week](https://www.timeanddate.com/calendar/days/first-day-of-the-week.html) depends on where you are in the world.
 - Calendar.Component.weekday -> The weekday units are the numbers 1 through N (where for the Gregorian calendar N=7 and 1 is Sunday).
@@ -95,8 +101,14 @@ another App, Widget Extension or App Clip.
 - The benefit of having previews is to help you building your UI quickly.
 - Don't invest too much time in maintaining your previews.
 - It probably doesn't make sense to fetch some data in the preview code.
-### Other
+### How to make code available or unavailable for different platform versions
+- [@available and #available](https://www.avanderlee.com/swift/available-deprecated-renamed/#the-difference-between-available-and-available)
+- @available: is used when a class or method shall only be [made available](https://www.avanderlee.com/swift/available-deprecated-renamed/#setting-the-availability-for-a-class-or-method) to specific iOS versions.
+- #available: is used to execute pieces of code in your flow (if #available(...) else {}) only for specific iOS versions.
+- There are also attributes values for: deprecated, obsoleted, renamed, unavailable
+### Other cool stuff
 - [A Tour through Swift Attributes - Marco Eidinger](https://watch.softinio.com/w/d6jiJFm5hEFrzmKw9kdgXC)
+- [Create your own Xcode code snippets](https://www.youtube.com/watch?v=GaV8iLGeVrc)
 
 ## Testing
 I use the [Arrange, Act and Assert Pattern](https://automationpanda.com/2020/07/07/arrange-act-assert-a-pattern-for-writing-good-tests/) for Unit Testing.
@@ -109,5 +121,10 @@ When I create PRs I stick to [this guideline](https://www.youtube.com/watch?v=_s
 
 ## Credits
 🙏🏽 Sean Allen
+
+<hr>
+<p align="center">
+Made with a 🙂 <a href="https://simonberner.dev">Simon Berner
+</p>
 
 

@@ -31,6 +31,7 @@ struct SwiftCalendarApp: App {
             .environment(\.managedObjectContext, persistenceController.container.viewContext)
             // A handler who is listing for incoming urls (here from the touch action of the Widget)
             .onOpenURL { url in
+                print("Deep-link url is: \(url.absoluteString)")
                 selectedTab = url.absoluteString == "calendar" ? 0 : 1
             }
         }

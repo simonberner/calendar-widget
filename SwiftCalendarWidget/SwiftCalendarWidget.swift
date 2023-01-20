@@ -73,10 +73,13 @@ struct SwiftCalendarWidgetEntryView : View {
                 MediumCalendarView(entry: entry, streakValue: calculateStreakDays())
             case .accessoryCircular:
                 LockScreenCircularView(entry: entry)
+                    .widgetURL(URL(string: "calendar"))
             case .accessoryRectangular:
                 LockScreenRectangularView(entry: entry)
+                    .widgetURL(URL(string: "calendar"))
             case .accessoryInline:
                 Label("Streak - \(calculateStreakDays())", systemImage: "swift")
+                    .widgetURL(URL(string: "streak"))
             case .systemSmall, .systemLarge, .systemExtraLarge: // don't supported here
                 EmptyView()
             @unknown default:

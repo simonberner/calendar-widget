@@ -108,8 +108,6 @@ struct CalendarView: View {
     }
 }
 
-struct CalendarView_Previews: PreviewProvider {
-    static var previews: some View {
-        CalendarView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    }
+#Preview {
+    CalendarView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 }

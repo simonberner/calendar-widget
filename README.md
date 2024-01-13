@@ -2,16 +2,16 @@
 
 <p align="center">
     <a href="https://en.wikipedia.org/wiki/IOS">
-        <img src="https://img.shields.io/badge/iOS-16.1+-blue.svg?style=for-the-badge" />
+        <img src="https://img.shields.io/badge/iOS-17.2+-blue.svg?style=for-the-badge" />
     </a>
     <a href="https://www.swift.org/">
-        <img src="https://img.shields.io/badge/Swift-5.7.2-brightgreen.svg?style=for-the-badge&logo=swift" />
+        <img src="https://img.shields.io/badge/Swift-5.9.2-brightgreen.svg?style=for-the-badge&logo=swift" />
     </a>
     <a href="https://developer.apple.com/xcode/swiftui">
         <img src="https://img.shields.io/badge/SwiftUI-blue.svg?style=for-the-badge&logo=swift&logoColor=black" />
     </a>
     <a href="https://developer.apple.com/xcode">
-        <img src="https://img.shields.io/badge/Xcode-14.2-blue.svg?style=for-the-badge" />
+        <img src="https://img.shields.io/badge/Xcode-15.2-blue.svg?style=for-the-badge" />
     </a>
     <a href="https://mastodon.green/@simonberner">
         <img src="https://img.shields.io/badge/Contact-@simonberner-orange?style=for-the-badge" alt="mastodon.green/@simonberner" />
@@ -59,8 +59,8 @@ container for both parts in place.
 - [First day of the week](https://www.timeanddate.com/calendar/days/first-day-of-the-week.html) is Monday.
 
 ## Tech Stack
-- Xcode 14.2
-- Swift 5.7.2
+- Xcode 15.2
+- Swift 5.9.2
 
 ## Frameworks
 - SwiftUI
@@ -68,8 +68,8 @@ container for both parts in place.
 - CoreData
 
 ## Device Compatibility
-- iPhone iOS 16.1+
-- iPad iOS 16.1+
+- iPhone iOS 17.2+
+- iPad iOS 17.2+
 
 ## Screenshots
 | Calendar View | Streak View | Widget View |

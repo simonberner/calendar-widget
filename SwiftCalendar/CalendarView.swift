@@ -6,29 +6,17 @@
 //
 
 import SwiftUI
-import CoreData
+import SwiftData
 import WidgetKit
 
 struct CalendarView: View {
-    // viewContext is the key to everything in CoreDate
-    @Environment(\.managedObjectContext) private var viewContext
-
-    /*
-     Property wrapper:
-     - Fetches all the days in the CoreData store -> PersistenceController
-     - Any time the underling items gets changed (every time we tap on a calendar date, we update
-     the didStudy to true), it automatically keeps the UI up to date.
-     - NSPredicate: only give us days in a certain date range (start of the month
-     with prefix days from the past month to the end of the current month).
-     Objective-C: %@, %@ (first and second argument)
-     (check out: https://nshipster.com/nspredicate/)
-     */
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Day.date, ascending: true)],
-        predicate: NSPredicate(format: "date BETWEEN {%@, %@}",
-                               Date().startDateOfCalendarWithPrefixDays as CVarArg,
-                               Date().endOfMonth as CVarArg))
-    private var days: FetchedResults<Day>
+    @Environment(\.modelContext) private var modelContext
+    // Careful: Predicate compile but may fail at runtime! Conclusion: TEST IT!
+    @Query(filter: #Predicate<Day> { $0.date > startDate && $0.date < endDate }, sort: \Day.date)
+    var days: [Day]
+    
+    static var startDate: Date { .now.startDateOfCalendarWithPrefixDays }
+    static var endDate: Date { .now.endOfMonth }
 
     var body: some View {
         NavigationView {
@@ -38,28 +26,20 @@ struct CalendarView: View {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
                     ForEach(days) { day in
                         // if it is a prefix day (from the past month)
-                        if day.date!.monthInt != Date().monthInt {
-                            Text(day.date!.formatted(.dateTime.day()))
+                        if day.date.monthInt != Date().monthInt {
+                            Text(day.date.formatted(.dateTime.day()))
                                 .fontWeight(.light)
                                 .foregroundColor(.secondary)
                         } else {
-                            Text(day.date!.formatted(.dateTime.day()))
+                            Text(day.date.formatted(.dateTime.day()))
                                 .fontWeight(.bold)
                                 .foregroundColor(day.didStudy ? .orange : .secondary)
                                 .frame(maxWidth: .infinity, minHeight: 40)
                                 .background(Circle().foregroundColor(.orange.opacity(day.didStudy ? 0.3 : 0.0)))
                                 .onTapGesture {
-                                    if day.date!.dayInt <= Date().dayInt {
+                                    if day.date.dayInt <= Date().dayInt {
                                         day.didStudy.toggle()
-                                        // Save in the CoreData store
-                                        do {
-                                            try viewContext.save()
-                                            // Reload Widget to fetch the updated data
-                                            WidgetCenter.shared.reloadTimelines(ofKind: "SwiftCalendarWidget")
-                                            print("✅ \(day.date!.dayInt) now studied!")
-                                        } catch {
-                                            print("❌ saving viewContext failed!")
-                                        }
+                                        WidgetCenter.shared.reloadTimelines(ofKind: "SwiftCalendarWidget")
                                     } else {
                                         print("❌ Can't study in the future!")
                                     }
@@ -91,23 +71,14 @@ struct CalendarView: View {
     /// of CoreData.
     /// - Parameter date: The date to create the days of the month from
     func createMonthDays(for date: Date) {
-        for dayOffset in 0..<date.numberOfDaysInMonth {
-            let newDay = Day(context: viewContext)
-            newDay.date = Calendar.current.date(byAdding: .day, value: dayOffset, to: date.startOfMonth)
-            newDay.didStudy = false
+        for dayOffset in 0..<date.numberOfDaysInMonth {            
+            let date = Calendar.current.date(byAdding: .day, value: dayOffset, to: date.startOfMonth)!
+            let newDay = Day(date: date, didStudy: false)
+            modelContext.insert(newDay) // SwiftData autosave
         }
-
-        do {
-            try viewContext.save()
-            print("✅ \(date.monthFullName) days created!")
-        } catch {
-            print("❌ saving viewContext failed!")
-
-        }
-
     }
 }
 
 #Preview {
-    CalendarView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    CalendarView()
 }

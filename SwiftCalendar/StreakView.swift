@@ -6,16 +6,15 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct StreakView: View {
-
-    // We only consider the days of the current month for calculating the streak days
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Day.date, ascending: true)],
-        predicate: NSPredicate(format: "(date >= %@) AND (date <= %@)",
-                               Date().startOfMonth as CVarArg,
-                               Date().endOfMonth as CVarArg))
-    private var days: FetchedResults<Day>
+    // Careful: Predicate compile but may fail at runtime! Conclusion: TEST IT!
+    @Query(filter: #Predicate<Day> { $0.date > startDate && $0.date < endDate }, sort: \Day.date)
+    var days: [Day]
+    
+    static var startDate: Date { .now.startDateOfCalendarWithPrefixDays }
+    static var endDate: Date { .now.endOfMonth }
 
     @State private var streakValue = 0
 
@@ -44,7 +43,7 @@ struct StreakView: View {
         guard !days.isEmpty else { return 0 }
 
         // Only consider already past days of the month from today
-        let nonFutureDays = days.filter { $0.date!.dayInt <= Date().dayInt }
+        let nonFutureDays = days.filter { $0.date.dayInt <= Date().dayInt }
 
         var streakCount = 0
 
@@ -55,7 +54,7 @@ struct StreakView: View {
             } else {
                 // exclude today from finishing the streak,
                 // because we might not have studied yet (and want to do so)
-                if day.date?.dayInt != Date().dayInt {
+                if day.date.dayInt != Date().dayInt {
                     break
                 }
             }

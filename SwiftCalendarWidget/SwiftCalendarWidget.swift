@@ -8,52 +8,48 @@
 import WidgetKit
 import SwiftUI
 import Intents
-import CoreData
+import SwiftData
 
 struct Provider: IntentTimelineProvider {
-
-    let viewContext = PersistenceController.shared.container.viewContext
-    var daysFetchRequest: NSFetchRequest<Day> {
-        // Crate a GET request to the shared core data container (very similar to @FetchRequest)
-        let request = Day.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(keyPath: \Day.date, ascending: true)]
-        request.predicate = NSPredicate(format: "date BETWEEN {%@, %@}",
-                                        Date().startDateOfCalendarWithPrefixDays as CVarArg,
-                                        Date().endOfMonth as CVarArg)
-        return request
-    }
-
+    
     // Placeholder for the Widget Gallery
     func placeholder(in context: Context) -> CalendarEntry {
         CalendarEntry(date: Date(), days: [], configuration: ConfigurationIntent())
     }
-
+    
     // Provides the timeline entry that represents the current time and state of a widget.
     // (A widget is not a living view, it is just a snapshot of a moment in time)
-    func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (CalendarEntry) -> ()) {
-        // Call the request on the PersistenceController viewContext
-        do {
-            let days = try viewContext.fetch(daysFetchRequest)
-            let entry = CalendarEntry(date: Date(), days: days, configuration: configuration)
-            completion(entry)
-        } catch {
-            print("Widget failed to fetch days!")
-        }
+    @MainActor func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (CalendarEntry) -> ()) {
+        let entry = CalendarEntry(date: Date(), days: fetchDays(), configuration: configuration)
+        completion(entry)
     }
-
+    
     // Provides an array of timeline entries for the current time and, optionally any future times to update a widget.
-    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-
-        // Call the request on the PersistenceController viewContext
-        do {
-            let days = try viewContext.fetch(daysFetchRequest)
-            let entry = CalendarEntry(date: Date(), days: days, configuration: configuration)
-            let timeline = Timeline(entries: [entry], policy: .after(.now.endOfDay))
-            completion(timeline)
-        } catch {
-            print("Widget failed to fetch days!")
+    @MainActor func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+        let entry = CalendarEntry(date: Date(), days: fetchDays(), configuration: configuration)
+        let timeline = Timeline(entries: [entry], policy: .after(.now.endOfDay))
+        completion(timeline)
+    }
+    
+    @MainActor func fetchDays() -> [Day] {
+        var sharedStoreURL: URL {
+            // Force unwrap the url because no one is probably going to delete the AppGroup
+            let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dev.simonberner.SwiftCalendar")!
+            return container.appendingPathComponent("SwiftCal.sqlite")
         }
-
+        
+        let container: ModelContainer = {
+            let config = ModelConfiguration(url: sharedStoreURL)
+            return try! ModelContainer(for: Day.self, configurations: config)
+        }()
+        
+        var startDate: Date { .now.startDateOfCalendarWithPrefixDays }
+        var endDate: Date { .now.endOfMonth }
+        
+        let predicate = #Predicate<Day> { $0.date > startDate && $0.date < endDate }
+        let descriptor = FetchDescriptor<Day>(predicate: predicate, sortBy: [.init(\.date)])
+        
+        return try! container.mainContext.fetch(descriptor)
     }
 }
 
@@ -66,36 +62,36 @@ struct CalendarEntry: TimelineEntry {
 struct SwiftCalendarWidgetEntryView : View {
     @Environment(\.widgetFamily) var family
     var entry: CalendarEntry
-
+    
     var body: some View {
         switch family {
-            case .systemMedium:
-                MediumCalendarView(entry: entry, streakValue: calculateStreakDays())
-            case .accessoryCircular:
-                LockScreenCircularView(entry: entry)
-                    .widgetURL(URL(string: "calendar"))
-            case .accessoryRectangular:
-                LockScreenRectangularView(entry: entry)
-                    .widgetURL(URL(string: "calendar"))
-            case .accessoryInline:
-                Label("Streak - \(calculateStreakDays())", systemImage: "swift")
-                    .widgetURL(URL(string: "streak"))
-            case .systemSmall, .systemLarge, .systemExtraLarge: // don't supported here
-                EmptyView()
-            @unknown default:
-                EmptyView()
+        case .systemMedium:
+            MediumCalendarView(entry: entry, streakValue: calculateStreakDays())
+        case .accessoryCircular:
+            LockScreenCircularView(entry: entry)
+                .widgetURL(URL(string: "calendar"))
+        case .accessoryRectangular:
+            LockScreenRectangularView(entry: entry)
+                .widgetURL(URL(string: "calendar"))
+        case .accessoryInline:
+            Label("Streak - \(calculateStreakDays())", systemImage: "swift")
+                .widgetURL(URL(string: "streak"))
+        case .systemSmall, .systemLarge, .systemExtraLarge: // don't supported here
+            EmptyView()
+        @unknown default:
+            EmptyView()
         }
     }
-
+    
     // TODO: Refactor this out
     private func calculateStreakDays() -> Int {
         guard !entry.days.isEmpty else { return 0 }
-
+        
         // Only consider already past days of the month from today
-        let nonFutureDays = entry.days.filter { $0.date!.dayInt <= Date().dayInt }
-
+        let nonFutureDays = entry.days.filter { $0.date.dayInt <= Date().dayInt }
+        
         var streakCount = 0
-
+        
         // Reverse to get the days from today backwards for the streak
         for day in nonFutureDays.reversed() {
             if day.didStudy {
@@ -103,19 +99,19 @@ struct SwiftCalendarWidgetEntryView : View {
             } else {
                 // exclude today from finishing the streak,
                 // because we might not have studied yet (and want to do so)
-                if day.date?.dayInt != Date().dayInt {
+                if day.date.dayInt != Date().dayInt {
                     break
                 }
             }
         }
-
+        
         return streakCount
     }
 }
 
 struct SwiftCalendarWidget: Widget {
     let kind: String = "SwiftCalendarWidget"
-
+    
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             SwiftCalendarWidgetEntryView(entry: entry)
@@ -142,7 +138,7 @@ private struct MediumCalendarView: View {
     var entry: CalendarEntry
     var streakValue: Int
     let columns = Array(repeating: GridItem(.flexible()), count: 7)
-
+    
     var body: some View {
         HStack {
             // Deep linking from the Widget to the StreakView
@@ -161,17 +157,17 @@ private struct MediumCalendarView: View {
             Link(destination: URL(string: "calendar")!) {
                 VStack {
                     CalendarHeaderView(font: .caption)
-
+                    
                     LazyVGrid(columns: columns, spacing: 6) {
                         ForEach(entry.days) { day in
                             // if it is a prefix day (past month)
-                            if day.date!.monthInt != Date().monthInt {
-                                Text(day.date!.formatted(.dateTime.day()))
+                            if day.date.monthInt != Date().monthInt {
+                                Text(day.date.formatted(.dateTime.day()))
                                     .font(.caption2)
                                     .fontWeight(.light)
                                     .foregroundColor(.secondary)
                             } else {
-                                Text(day.date!.formatted(.dateTime.day()))
+                                Text(day.date.formatted(.dateTime.day()))
                                     .font(.caption2)
                                     .bold()
                                     .frame(maxWidth: .infinity)
@@ -198,17 +194,17 @@ private struct MediumCalendarView: View {
 private struct LockScreenCircularView: View {
     var entry: CalendarEntry
     var currentCalendarDays: Int {
-        entry.days.filter { $0.date?.monthInt == Date().monthInt }.count
+        entry.days.filter { $0.date.monthInt == Date().monthInt }.count
     }
-
+    
     var daysStudied: Int {
-        entry.days.filter { $0.date?.monthInt == Date().monthInt }
+        entry.days.filter { $0.date.monthInt == Date().monthInt }
             .filter { $0.didStudy }.count
     }
-
+    
     var body: some View {
         Gauge(value: 15.0, in: 1...Double(currentCalendarDays)) {
-//            Image(systemName: "swift")
+            //            Image(systemName: "swift")
         } currentValueLabel: {
             Text("\(daysStudied)")
         } minimumValueLabel: {
@@ -217,7 +213,7 @@ private struct LockScreenCircularView: View {
             Text("\(currentCalendarDays)")
         }
         .gaugeStyle(.accessoryCircular)
-
+        
     }
 }
 
@@ -225,14 +221,14 @@ private struct LockScreenCircularView: View {
 private struct LockScreenRectangularView: View {
     var entry: CalendarEntry
     let columns = Array(repeating: GridItem(.flexible()), count: 7)
-
+    
     var body: some View {
         LazyVGrid(columns: columns, spacing: 4) {
             ForEach(entry.days) { day in
                 // if it is a prefix day (past month)
-                if day.date!.monthInt != Date().monthInt {
-//                    Text(" ")
-                    Text(day.date!.formatted(.dateTime.day()))
+                if day.date.monthInt != Date().monthInt {
+                    //                    Text(" ")
+                    Text(day.date.formatted(.dateTime.day()))
                         .font(.system(size: 6))
                         .fontWeight(.light)
                         .foregroundColor(.secondary)
@@ -243,7 +239,7 @@ private struct LockScreenRectangularView: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 6, height: 6)
                     } else {
-                        Text(day.date!.formatted(.dateTime.day()))
+                        Text(day.date.formatted(.dateTime.day()))
                             .font(.system(size: 6))
                             .frame(maxWidth: .infinity)
                     }

@@ -64,8 +64,6 @@ struct StreakView: View {
     }
 }
 
-struct StreakView_Previews: PreviewProvider {
-    static var previews: some View {
-        StreakView()
-    }
+#Preview {
+    StreakView()
 }

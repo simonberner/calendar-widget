@@ -32,24 +32,13 @@ struct Provider: IntentTimelineProvider {
     }
     
     @MainActor func fetchDays() -> [Day] {
-        var sharedStoreURL: URL {
-            // Force unwrap the url because no one is probably going to delete the AppGroup
-            let container = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dev.simonberner.SwiftCalendar")!
-            return container.appendingPathComponent("SwiftCal.sqlite")
-        }
-        
-        let container: ModelContainer = {
-            let config = ModelConfiguration(url: sharedStoreURL)
-            return try! ModelContainer(for: Day.self, configurations: config)
-        }()
-        
         var startDate: Date { .now.startDateOfCalendarWithPrefixDays }
         var endDate: Date { .now.endOfMonth }
-        
         let predicate = #Predicate<Day> { $0.date > startDate && $0.date < endDate }
         let descriptor = FetchDescriptor<Day>(predicate: predicate, sortBy: [.init(\.date)])
         
-        return try! container.mainContext.fetch(descriptor)
+        let context = ModelContext(Persistence.container)
+        return try! context.fetch(descriptor)
     }
 }
 

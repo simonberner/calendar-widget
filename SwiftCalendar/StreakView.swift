@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct StreakView: View {
-    // Careful: Predicate compile but may fail at runtime! Conclusion: TEST IT!
+    // Careful: even if the predicate compiles, it may fail at runtime! Conclusion: Test it beforehand!
     @Query(filter: #Predicate<Day> { $0.date > startDate && $0.date < endDate }, sort: \Day.date)
     var days: [Day]
     

@@ -97,6 +97,9 @@ container for both parts in place.
 - An AppGroup allows us to share one or more CoreData containers among multiple apps.
 - If you already have an existing App with a CoreData container in place, you have to do a data migration to share that container with
 another App, Widget Extension or App Clip.
+### SwiftData
+- [SwiftData](https://codewithchris.com/swift-data/)
+- Same as CoreData, SwifttData uses SQLite as its database engine.
 ### SwiftUI Preview
 - The benefit of having previews is to help you building your UI quickly.
 - Don't invest too much time in maintaining your previews.

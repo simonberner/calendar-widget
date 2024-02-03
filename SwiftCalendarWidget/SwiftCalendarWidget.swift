@@ -114,11 +114,10 @@ struct SwiftCalendarWidget: Widget {
     }
 }
 
-struct SwiftCalendarWidget_Previews: PreviewProvider {
-    static var previews: some View {
-        SwiftCalendarWidgetEntryView(entry: CalendarEntry(date: Date(), days: [], configuration: ConfigurationIntent()))
-            .previewContext(WidgetPreviewContext(family: .accessoryCircular))
-    }
+#Preview(as: .systemMedium) {
+    SwiftCalendarWidget()
+} timeline: {
+    CalendarEntry(date: Date(), days: [], configuration: ConfigurationIntent())
 }
 
 // MARK: - UI Components for widget class
@@ -173,7 +172,7 @@ private struct MediumCalendarView: View {
             }
             .padding(.leading, 4)
         }
-        .padding()
+        .containerBackground(for: .widget) { }
     }
 }
 

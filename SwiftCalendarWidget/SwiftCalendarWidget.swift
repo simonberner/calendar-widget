@@ -9,6 +9,7 @@ import WidgetKit
 import SwiftUI
 import Intents
 import SwiftData
+import AppIntents
 
 struct Provider: IntentTimelineProvider {
     
@@ -129,17 +130,24 @@ private struct MediumCalendarView: View {
     
     var body: some View {
         HStack {
-            // Deep linking from the Widget to the StreakView
-            Link(destination: URL(string: "streak")!) {
-                VStack {
-                    Text("\(streakValue)")
-                        .font(.system(size: 70, design: .rounded))
-                        .bold()
-                        .foregroundColor(.orange)
-                    Text("day streak")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
+            VStack {
+                // Deep linking from the Widget to the StreakView
+                Link(destination: URL(string: "streak")!) {
+                    VStack {
+                        Text("\(streakValue)")
+                            .font(.system(size: 70, design: .rounded))
+                            .bold()
+                            .foregroundColor(.orange)
+                        Text("day streak")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
                 }
+                
+                Button("Study", systemImage: "book", intent: ToggleStudyIntent())
+                    .font(.caption)
+                    .tint(.orange)
+                    .controlSize(.small)
             }
             // Deep linking from the Widget to the CalendarView
             Link(destination: URL(string: "calendar")!) {
